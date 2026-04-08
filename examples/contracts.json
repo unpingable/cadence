@@ -1,0 +1,37 @@
+[
+  {
+    "name": "clickstream",
+    "time_semantics": "event",
+    "update_cadence_seconds": 60,
+    "expected_lag_seconds": 30,
+    "max_skew_seconds": 120,
+    "freshness_sla_seconds": 120,
+    "safe_for": ["monitoring", "reporting", "exploratory"]
+  },
+  {
+    "name": "daily_revenue",
+    "time_semantics": "processing",
+    "update_cadence_seconds": 86400,
+    "expected_lag_seconds": 7200,
+    "correction_window_seconds": 259200,
+    "freshness_sla_seconds": 90000,
+    "safe_for": ["reporting", "audit"]
+  },
+  {
+    "name": "user_profiles",
+    "time_semantics": "ingest",
+    "update_cadence_seconds": 3600,
+    "expected_lag_seconds": 600,
+    "freshness_sla_seconds": 7200,
+    "safe_for": ["reporting", "allocation", "exploratory"]
+  },
+  {
+    "name": "alerts_feed",
+    "time_semantics": "event",
+    "update_cadence_seconds": 5,
+    "expected_lag_seconds": 2,
+    "max_skew_seconds": 10,
+    "freshness_sla_seconds": 15,
+    "safe_for": ["monitoring", "escalation"]
+  }
+]

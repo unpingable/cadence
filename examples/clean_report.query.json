@@ -1,0 +1,6 @@
+{
+  "name": "weekly_user_report",
+  "sources": ["user_profiles"],
+  "intended_use": "reporting",
+  "claims_current": false
+}

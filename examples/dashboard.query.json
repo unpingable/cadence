@@ -1,0 +1,6 @@
+{
+  "name": "revenue_dashboard",
+  "sources": ["clickstream", "daily_revenue"],
+  "intended_use": "monitoring",
+  "claims_current": true
+}
