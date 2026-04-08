@@ -44,10 +44,12 @@ Always run tests before proposing commits. Never claim tests pass without runnin
 ```
 src/cadence/          Core library
   contract.py         Temporal contract schema
-  lint.py             Admissibility checker
+  lint.py             Admissibility checker (8 violation rules)
   receipt.py          Decision receipt emitter
 tests/                pytest suite
 examples/             Example contracts and queries
+PROVENANCE.md         Authorship and AI collaboration record
+NOTICE                Apache 2.0 attribution
 ```
 
 ---

@@ -29,10 +29,3 @@ Thumbs.db
 
 # Governor (local state)
 .governor/
-
-.venv/
-*.egg-info/
-__pycache__/
-.pytest_cache/
-build/
-dist/

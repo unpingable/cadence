@@ -37,15 +37,35 @@ class UseClass(Enum):
 
 @dataclass(frozen=True)
 class TemporalContract:
-    """Declares the temporal properties of a data source."""
+    """Declares the temporal properties of a data source.
+
+    Fields:
+        name: Human-readable identifier for the data source.
+        time_semantics: What kind of timestamp this source produces
+            (event, ingest, processing, publish, unknown).
+        update_cadence_seconds: How often the source produces a new
+            snapshot, in seconds. Used to compute staleness budget.
+        expected_lag_seconds: Expected delay between when data is
+            generated and when it becomes queryable. Used to compute
+            staleness budget.
+        correction_window_seconds: Duration during which the source may
+            backfill or restate previously-published values.
+        freshness_sla_seconds: Maximum acceptable age of the most recent
+            record before the source is considered stale.
+        max_skew_seconds: Acceptable clock drift between this source and
+            others in a join. If expected lag exceeds this value, the
+            lag-exceeds-skew rule fires.
+        safe_for: Set of UseClass values declaring which decision
+            contexts this source's temporal properties support.
+    """
 
     name: str
     time_semantics: TimeSemantics
     update_cadence_seconds: int | None = None
     expected_lag_seconds: int | None = None
-    correction_window_seconds: int | None = None  # backfill/restatement window
+    correction_window_seconds: int | None = None
     freshness_sla_seconds: int | None = None
-    max_skew_seconds: int | None = None  # acceptable clock skew
+    max_skew_seconds: int | None = None
     safe_for: frozenset[UseClass] = field(default_factory=frozenset)
 
     def staleness_budget(self) -> int | None:
