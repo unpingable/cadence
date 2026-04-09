@@ -1,12 +1,16 @@
 # cadence
 
-Temporal admissibility checker for data analytics. Chain-of-custody for dashboard facts.
+Your dashboard says revenue is $2M. That number is three days old. Nobody told you.
 
-## What it does
+Your real-time map joins a streaming source updated every 5 seconds with a batch table refreshed once a day. The join looks fine. The answer is nonsense.
 
-- Declares **temporal contracts** for data sources (cadence, lag, event-time semantics, freshness SLA)
-- **Lints** queries, models, and dashboards for temporal coherence violations (incompatible joins, unsafe cadences, misleading present-tense claims (`claims_current`))
-- Emits **decision receipts** documenting source as-of times, lag at render, coherence grade, and admissibility for the intended use
+Your model scores customers using a feature that was restated last night, but the labels it trained on were snapshotted a week ago. The accuracy metric is a lie about a lie.
+
+**Cadence catches these.** It checks whether the evidence behind a decision is temporally coherent enough to justify that decision, at that moment, for that use.
+
+- Declares **temporal contracts** for data sources — what kind of time they produce, how often they update, how much lag to expect, and what decisions they're safe for
+- **Lints** queries, models, and dashboards for temporal coherence violations — incompatible joins, unsafe cadences, misleading present-tense claims (`claims_current`)
+- Emits **decision receipts** documenting source state at evaluation time, violations found, and an admissibility grade
 
 ## What this is not
 
@@ -14,9 +18,9 @@ Temporal admissibility checker for data analytics. Chain-of-custody for dashboar
 - Not an authorization layer — standing/governor handles entitlements
 - Not a data warehouse or query engine
 
-## Invariants
+Cadence doesn't watch your data. It asks whether your data is honest enough to decide from.
 
-The question this system answers:
+## Invariants
 
 > Is this evidence temporally coherent enough to justify this decision, at this moment, for this use?
 
